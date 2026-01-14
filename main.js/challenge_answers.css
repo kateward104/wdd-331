@@ -1,0 +1,62 @@
+/*Challenge 1 */
+
+/* Analyze which color applies to each paragraph element below */
+/* This effects all paragraphs in the document and I believe the specificity value is (0,0,0,1). This effects all paragraphs. */
+p {
+    color: blue;
+}
+
+/* This effects the background of the .intro section. The specificity is (0,0,1,0). This effects paragraphs 2 and 4.*/
+.intro {
+    color: green;
+}
+
+/* This selects the ID/section of special and turns the background red. The specificity is (0,1,0,0). This effects paragraphs 3 and 4.  */
+#special {
+    color: red;
+}
+
+/* This selects all the paragraph backgrounds in a div. The specificity is (0,0,0,2). This effects all the paragraphs I believe, but some of the others are more specific and will overpower the div.*/
+div p {
+    color: purple;
+}
+
+/* This selects the intro background inside the container. The specificity is (0,0,2,0). I think this one wins. This effects paragraph 1.*/
+.container .intro {
+    color: orange;
+}
+
+/* This one is a bit tricky since it is selecting the intro in the special ID.The specificity is (0,1,1,0). This effects paragraph 4. Paragraph 1 is purple. Paragraph 2 is orange. Paragraph 3 is red. Paragraph 4 is brown. */
+#special.intro {
+    color: brown;
+}
+
+
+
+
+/* Challenge 2 */
+
+/* Calculate the actual rendered dimensions */
+/* Width: 300px + Padding (left & right) 40px + Border (left & right) 10px + Margin (left & right) 20px = 370px,
+   Height: 200px + Padding (top & bottom) 40px + Border (top & bottom) 10px + Margin (top & bottom) 20px = 270px, 
+   Total Width: 370px, Total Height: 270px, Total: 640px */
+.box-one {
+    box-sizing: content-box;
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+}
+
+/* Width: 300px + Margin (left & right) 20px = 320px, 
+   Height: 200px + Margin(top & bottom) 20px = 220px, 
+   Total Width: 320px, Total Height: 220px, Total: 540px*/
+.box-two {
+    box-sizing: border-box;
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+}
