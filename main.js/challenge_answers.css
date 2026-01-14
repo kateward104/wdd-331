@@ -60,3 +60,119 @@ div p {
     border: 5px solid black;
     margin: 10px;
 }
+
+
+
+/* Challenge 3 */
+/* Which background color applies? */
+/* This loses because there is another div overriding it later and it is only a (0,0,0,1) specificity. */
+div {
+    background: blue;
+}
+
+/* This loses because the .box is repeated later, and it is only a (0,0,1,0) specificity. */
+.box {
+    background: green;
+}
+
+/* This is a (0,0,0,1) specificity, which means that .box beats it already, so it loses. */
+div {
+    background: red;
+}
+
+/* THIS RULE WINS. This one wins because it is a (0,0,2,0) specificity. The color will be purple. */
+.container .box {
+    background: purple;
+}
+
+/* This loses because it's specificity is only (0,0,1,0), so .container .box beats it. */
+.box {
+    background: orange;
+}
+
+
+/* Challenge 4 */
+/* Is this mobile-first? If not, fix it. */
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+
+@media (width >=768px) {
+    .navigation {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 2rem;
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Challenge 5 */
+/* Complete the print styles */
+
+nav {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: #333;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+@media print {
+    nav {
+        display: none;
+    }
+
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+
+    a::after {
+        content: " (" attr(href) ")";
+    }
+
+    a[href^="#"]::after {
+        content: none;
+    }
+}
+
+/* Add @media print rule here to:
+   1. Hide the nav element
+   2. Make links black and underlined
+   3. Show the URL after each link using attr()
+   4. Do NOT show URLs for anchor links (href starting with #)
+*/
+
+
+
+/* Challenge 6 */
+/* Rewrite using nested media queries */
+
+.card {
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+
+
+    @media (width >=768px) {
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 200px 1fr;
+    }
+
+
+    @media (width >=1024px) {
+        padding: 3rem;
+        grid-template-columns: 300px 1fr;
+    }
+}
