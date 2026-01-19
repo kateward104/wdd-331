@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Properties Practice</title>
+    <style>
+        /* Add your CSS here */
+        /* Assignment Ponder */
+        /*
+            What advantages did you find in using custom properties versus hard-coded values?
+                I usually turn to Adobe color for color palettes, but I realized part way through that I should transition to oklch colors.
+                Using custom properties made it super easy to go back and change the color scheme to be oklch instead of hex codes.
+                I also noticed that having consistent spacing and sizing, really helps to create a visual unity that most people probably 
+                wouldn't notice, but as a graphic designer, I definitely appreciate it. 
+
+            How did clamp() make responsive design easier or harder?
+                I don't think that the clamp effect was quite as obvious on this project as others. In my experience to begin with,
+                text size shouldn't need to change that drastically across different screen sizes. I can see why it would be helpful, and create
+                fewer changes necessary for the @media queries.
+
+            What challenges did you encounter with scoped custom properties for component variations?
+                I think the biggest challenge was that I wasn't entirely sure how drastic the measurement changes should be for the different 
+                sizes until I started organizing things. I think it was good that I kept it small and worked off of the example to see what 
+                I could change that helped enhance the design without making it cumbersome.
+
+            How does the theme switching mechanism demonstrate the power of custom properties?
+                Using custom properties for the theme switching changes the game! I think I only had to make about 3 changes to make it work 
+                and I have almost always had to do more in the past, so I really appreciated the flexibility with this. 
+       
+        */
+
+
+
+        /* Basic reset - you can keep or modify this */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Define your custom properties in :root */
+        :root {
+            /* Colors */
+            --color-primary: oklch(0.4587 0.1836 22.79);
+            --color-secondary: oklch(55.15% 0.11756 72.77 / 0.938);
+            --color-background: oklch(0.95 0.01 22.79);
+            --color-text: oklch(0.15 0.01 22.79);
+
+
+            /* Spacing scale */
+            --spacing-xs: clamp(0.1rem, 0.5vw, 0.25rem);
+            --spacing-sm: clamp(0.25rem, 1vw, 0.5rem);
+            --spacing-md: clamp(0.5rem, 2vw, 1rem);
+            --spacing-lg: clamp(1rem, 3vw, 2rem);
+            --spacing-xl: clamp(2rem, 4vw, 4rem);
+
+            /* Typography scale */
+            --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
+            --font-size-lg: calc(var(--font-size-base) * 1.25);
+            --font-size-xl: calc(var(--font-size-base) * 1.5);
+            /* Add more type sizes... */
+
+            /* Layout values */
+            --max-width: 1200px;
+            --border-radius: 1rem;
+            /* Could change this back to 0.5rem if necessary */
+            /* Add more layout values... */
+        }
+
+        /* Nav styles */
+        .nav {
+            background: var(--color-primary);
+            color: var(--color-background);
+            padding: var(--spacing-lg);
+
+            .nav-container {
+                display: flex;
+                gap: var(--spacing-xl);
+                text-align: center;
+
+                .nav-list {
+                    display: flex;
+                    gap: var(--spacing-xl);
+                    list-style: none;
+
+                    li {
+                        align-content: center;
+                    }
+
+                    a {
+                        size: var(--font-size-base);
+                        display: flex;
+                        color: var(--color-background);
+                        text-decoration: none;
+                        transition: color 0.3s ease-in-out, color 0.3s ease-in-out;
+                    }
+
+                    a:hover {
+                        color: color-mix(var(--color-background), var(--color-primary));
+                    }
+
+                    a:active {
+                        color: var(--color-text);
+                    }
+                }
+            }
+
+        }
+
+
+        /*
+            <h1> should use your largest fluid font size
+            <h2> should use a mid-range size
+            Body text should use your base font size
+            All typography should reference custom properties
+        */
+
+        /* Basic paragraph styling */
+        .main,
+        .footer {
+            padding: var(--spacing-lg);
+
+            section {
+                padding-bottom: var(--spacing-lg);
+                padding-top: var(--spacing-lg);
+            }
+
+            p {
+                size: var(--font-size-base);
+            }
+
+            h3 {
+                margin-top: var(--spacing-sm);
+                margin-bottom: var(--spacing-xs);
+            }
+
+            h2 {
+                size: var(--font-size-lg);
+                margin-top: var(--spacing-md);
+                margin-bottom: var(--spacing-xs);
+            }
+
+            h1 {
+                size: var(--font-size-xl);
+                margin-bottom: var(--spacing-xs);
+            }
+
+            button {
+                background-color: var(--color-secondary);
+                color: var(--color-background);
+                border-radius: var(--border-radius);
+                padding: var(--spacing-sm);
+                margin-top: var(--spacing-md);
+                margin-right: var(--spacing-md);
+                margin-bottom: var(--spacing-md);
+            }
+
+            button:hover {
+                background-color: color-mix(var(--color-secondary), var(--color-text) 20%);
+                color: var(--color-background);
+                transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            }
+
+            button:active {
+                background-color: var(--color-primary);
+                color: var(--color-background);
+            }
+
+            .btn-secondary {
+                background-color: var(--color-text);
+                color: var(--color-background);
+            }
+
+            .btn-secondary:hover {
+                background-color: var(--color-primary);
+                color: var(--color-background);
+            }
+
+            .card-grid {
+                display: flex;
+            }
+
+            .card {
+                --card-bg: var(--color-primary);
+                --card-text: var(--color-background);
+                --card-border: var(--color-secondary);
+                background: var(--card-bg);
+                color: var(--card-text);
+                border-left: 4px solid var(--card-border);
+                padding: var(--spacing-md);
+                margin: var(--spacing-xs);
+                box-shadow: 0 2px 6px var(--color-text, 0.1);
+                border-radius: var(--border-radius);
+                /* More styles... */
+            }
+
+            .card-featured {
+                --card-bg: color-mix(var(--color-primary), var(--color-text) 20%);
+                --card-text: white;
+                --card-border: var(--color-secondary);
+            }
+
+            .card-muted {
+                --card-bg: color-mix(var(--color-primary), var(--color-background) 20%);
+            }
+
+        }
+
+
+        /* Define dark theme */
+        [data-theme="dark"] {
+
+            /* Dark theme color overrides */
+            .main,
+            .footer,
+            body {
+                background-color: var(--color-text);
+                color: var(--color-background);
+
+                h1,
+                h2,
+                h3,
+                p {
+                    color: var(--color-background);
+                }
+
+                .btn-secondary {
+                    background-color: var(--color-background);
+                    color: var(--color-primary);
+                }
+
+                .btn-secondary:hover {
+                    background-color: var(--color-primary);
+                    color: var(--color-background);
+                }
+
+            }
+
+        }
+
+        @media screen and (max-width: 1000px) {
+            .card-grid {
+                flex-direction: column;
+            }
+        }
+
+        /* Your component styles below */
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <h2 class="nav-logo">Design System</h2>
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <h1>Custom Properties & Math Functions</h1>
+                <p class="hero-text">
+                    A responsive, themeable design system built entirely with modern CSS.
+                    This page demonstrates the power of custom properties and math functions
+                    for creating flexible, maintainable interfaces.
+                </p>
+                <div class="button-group">
+                    <button class="btn">Get Started</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Features</h2>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Fluid Typography</h3>
+                        <p>
+                            Text scales smoothly across all viewport sizes using clamp()
+                            for responsive sizing without media queries.
+                        </p>
+                    </article>
+
+                    <article class="card card-featured">
+                        <h3>Custom Properties</h3>
+                        <p>
+                            A complete design system built with CSS variables that cascade
+                            through the DOM and enable dynamic theming.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Component Variations</h3>
+                        <p>
+                            Scoped custom properties create variations without duplicating
+                            CSS, keeping code maintainable and DRY.
+                        </p>
+                    </article>
+
+                    <article class="card card-muted">
+                        <h3>Theme Support</h3>
+                        <p>
+                            Light and dark themes that automatically update all components
+                            by redefining root-level custom properties.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Responsive Spacing</h3>
+                        <p>
+                            Fluid spacing scales with viewport size, maintaining visual
+                            hierarchy and breathing room on all devices.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Math Functions</h3>
+                        <p>
+                            Calc and clamp functions enable dynamic calculations and
+                            fluid sizing for truly responsive layouts.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Build?</h2>
+                <p>
+                    Start creating your own design systems with custom properties
+                    and modern CSS math functions.
+                </p>
+                <button class="btn">Start Building</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Design System Practice. Built with modern CSS.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
