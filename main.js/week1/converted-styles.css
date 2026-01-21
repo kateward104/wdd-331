@@ -1,0 +1,241 @@
+/* ===== CONVERSION FROM SASS ===== */
+/*  What was straightforward to convert?
+        The varible conversion was fairly easy. Once I understood the color ratio of the color-mix, it was easy to convert it.
+
+    What required creative problem-solving?
+        The @mixin was complicated to understand, which made it complicated to convert as well. I haven't had a lot of experience making
+        a base variable as well, so I am still not 100% sure if I did it the most efficient way. Not to mention the fact that the assignment
+        says that the HTML will need to be changed to acommodate for that, and since we don't see the HTML, it was hard to know if I did it 
+        the right way. 
+
+    How did you handle the mixin pattern?
+        I made a button base class and set the background colors for the individual button classes. I did double check with ChatGPT to see
+        if that was a solution that worked for this, and it said I was on the right track. I think that for the most part, I understand the
+        concept of conversion, and it was interesting to see the different formats of code, but I am still unsure if I did everything 
+        efficiently. 
+
+    What are the advantages of native CSS over preprocessors for this code?
+        Well, as we have learned, setting custom variables, allows us to change things very quickly and easily. This helps with calculations,
+        and I would say that using color-mix, gives us more control over color manipulation. I also liked how nesting did carry over in some
+        cases, the syntax just needed to change a bit. I think this is one thing that is important no matter what you are using to code in. 
+    
+    Are there any scenarios where the preprocessor version might still be preferable? 
+        I am not sure, though I can see why the @mixin would be something fun to play around with. I don't think it is sustainable, but it is fun.
+        I think I would have to see it used more in HTML to really understand its capabilities. */
+
+
+/* Brand colors and spacing */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --base-spacing: 1rem;
+    --border-radius: 0.5rem;
+}
+
+/* Mixin for consistent button styles */
+.button-base {
+    padding: var(--base-spacing) calc(var(--base-spacing) * 1.5);
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+
+    &:hover {
+        background-color: color-mix(var(--secondary-color), 92%, black);
+    }
+}
+
+.btn-danger {
+    background-color: var(--accent-color);
+
+    &:hover {
+        background-color: color-mix(var(--accent-color), 92%, black);
+    }
+}
+
+
+/* Navigation component */
+.navigation {
+    background-color: var(--primary-color);
+    padding: var(--base-spacing);
+
+    & .nav-list {
+        display: flex;
+        gap: var(--base-spacing);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        & li {
+            & a {
+                color: white;
+                text-decoration: none;
+                padding: calc(var(--base-spacing) * 0.5);
+                border-radius: calc(var(--border-radius) * 0.5);
+
+                &:hover {
+                    /*background-color: lighten(var(--primary-color), 10%);*/
+                    background-color: color-mix(var(--primary-color), 90%, white);
+                }
+
+                &.active {
+                    background-color: var(--secondary-color);
+                }
+            }
+        }
+    }
+}
+
+
+
+/* Card component */
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: calc(var(--base-spacing) * 1.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    & .card-header {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: var(--base-spacing);
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: calc(var(--base-spacing) * 0.5);
+    }
+
+    & .card-body {
+        color: #333;
+        line-height: 1.6;
+    }
+}
+
+
+
+/* ===== CONVERSION FROM LESS ===== */
+
+/*  What was straightforward to convert?
+        The variables were pretty easy to convert, as well as the lighten and darken.    
+
+    What required creative problem-solving?
+        Nothing from this was particularly difficult since it the changes were very similar to the SASS conversion. This had a similar
+        problem of the hypothetical HTML needing to be changed to adapt for the new button base class. I hoped that I being able to change it
+        would allow for my solution to run, but without changing the HTML, I don't know for sure. I did check ChatGPT to see if there were
+        any large problems with either pieces of code and it just confirmed that the HTML would need to be changed to apply some of my CSS,
+        but that it should work. 
+
+    How did you handle the mixin pattern?
+        I treated it the same I did in the SASS conversion. I tried to break up the different button styles to be their own classes since I 
+        wasn't able to see the CSS. I would like to see how others did their assignments. Theoretically, another way would be to simply target
+        a "button" itself, which would create a default style and then hopefully the class can provide additional styles, but I feel that might
+        be thrown up in the air since we don't see the HTML. For my own document, I think I would go this route, but I didn't feel right 
+        committing to it this time without seeing the HTML.
+    
+    What are the advantages of native CSS over preprocessors for this code?
+        I think it is very similar to the SASS conversion. I appreciate the ease of custom properties, and the nesting helps to organize the code
+        and make changes that will be easy to see consistently through the document. Color-mix also gives more flexibility.I would like to 
+        go over where and when using "&" is appropriate. 
+
+    Are there any scenarios where the preprocessor version might still be preferable?
+        I did enjoy that LESS was much smaller than SASS was, which helped with conversion a lot. Again, I don't think I have seen the 
+        preprocessor in action as much so it is difficult to say without having more experience with it.
+     */
+
+
+
+
+/* Brand colors and spacing */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --base-spacing: 1rem;
+    --border-radius: 0.5rem;
+}
+
+/* Mixin for consistent button styles*/
+.button-base {
+    padding: var(--base-spacing) calc(var(--base-spacing) * 1.5);
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Navigation component */
+.navigation {
+    background-color: var(--primary-color);
+    padding: var(--base-spacing);
+
+    & .nav-list {
+        display: flex;
+        gap: var(--base-spacing);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        & li {
+            & a {
+                color: white;
+                text-decoration: none;
+                padding: calc(var(--base-spacing) * 0.5);
+                border-radius: calc(var(--border-radius) * 0.5);
+
+                &:hover {
+                    background-color: color-mix(var(--primary-color), 90%, white);
+                }
+
+                &.active {
+                    background-color: var(--secondary-color);
+                }
+            }
+        }
+    }
+}
+
+/* Button styles */
+.btn {
+
+    &.btn-primary {
+        background-color: var(--secondary-color);
+
+        &:hover {
+            background-color: color-mix(var(--secondary-color), 92%, black);
+        }
+    }
+
+    &.btn-danger {
+        background-color: var(--accent-color);
+
+        &:hover {
+            background-color: color-mix(var(--accent-color), 92%, black);
+        }
+    }
+}
+
+/* Card component */
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: calc(var(--base-spacing) * 1.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    & .card-header {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: var(--base-spacing);
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: calc(var(--base-spacing) * 0.5);
+    }
+
+    & .card-body {
+        color: #333;
+        line-height: 1.6;
+    }
+}
