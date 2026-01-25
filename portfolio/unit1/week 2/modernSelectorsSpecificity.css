@@ -1,0 +1,34 @@
+/**
+ * Analyze the following selectors and answer:
+ * 1. What is the specificity of each selector?
+ * 2. Which selector would win if both targeted the same element?
+ * 3. How could you refactor these using :is() or :where()?
+ * 4. When would you choose :where() over :is()?
+ * Selector A has a specificity of (0, 0, 0, 1). Selector B has a specificity of (0, 0, 0, 3). Selector C has a 
+ * specificity of (0, 0, 0, 1). Selector D has a specificity of (0, 0, 1, 1). I believe D would still win
+ * if these were all targeting the same thing because D has a class. I believe that in general, you would use 
+ * when for all the general elements that aren't quite as specific, then use is for the elements in nav that are
+ * specific. It looks like you can change Selector A and Selector B to become :is(nav, aside) ol li a { color: 
+ * green;} and :is(nav, aside) ul li a { color: blue;}
+ 
+ */
+
+/* Selector A */
+nav ul li a {
+    color: blue;
+}
+
+/* Selector B */
+:is(nav, aside) :is(ul, ol) li a {
+    color: green;
+}
+
+/* Selector C */
+:where(nav, aside) ul li a {
+    color: red;
+}
+
+/* Selector D */
+.navigation a {
+    color: purple;
+}
