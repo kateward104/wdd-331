@@ -1,0 +1,49 @@
+/**
+ * Analyze this typography system and identify:
+ * 1. What typography principles are being violated?
+ * 2. What improvements would you recommend?
+ * 3. How would you reorganize this using custom properties?
+ * 
+ * It looks like the width for p is the entire page, which should not be the case. This will make it much too long
+ * to read, and they should use max-width: 66ch to create an appropriate reading distance. Clamp is also not being
+ * used here. All of the font sizes are being hard coded, which is not creating proper visual space either. Using
+ * custom properties and making both the spacing and text size usable with clamp will help to give the lines their
+ * proper space in proportion to everything, as well as the optimal size for responsiveness. I would also just be
+ * aware of what code is being copied again, both body and p are saying the font-size is 16, but if p is the only
+ * thing in the body then it is redundant, if not, then there should be more hierarchy created by changing the other
+ * text inside the body.
+ * 
+ * Consider: scale, measure, line height, rhythm, responsiveness
+ */
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+article p {
+    max-width: 100%;
+}

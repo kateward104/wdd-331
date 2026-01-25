@@ -1,0 +1,43 @@
+/**
+ * Analyze the custom property implementation below.
+ * Identify at least 3 issues or missed opportunities and explain:
+ * 1. What is wrong or could be improved?
+ * 2. Why is it a problem?
+ * 3. How would you fix it?
+ * 
+ * I think they should add a variable that is a text-color and set it to white since the value of white is assigned
+ * more than once. It seems rather silly to make btncolor it's own variable if it is just going to be the same color
+ * of blue. If that is the way you want to do it, I would separate the root so it has a button and a color section. 
+ * If I were to take the button thing farther, I would use calc and figure out the different button states I could
+ * make using the lightness and chroma. I also think that padding could be built out more instead of being specific
+ * to the card-padding, because something else assigns padding as well, and I think it would be more efficient and
+ * helpful if padding was a consistent amount that could be applied to many things. 
+ 
+ * Consider: naming, scoping, fallbacks, organization, performance
+ */
+
+:root {
+    --blue: #0066cc;
+    --btncolor: var(--blue);
+    --card-padding: 20px;
+    --primary-lightness: 0.55;
+    --primary-chroma: 0.25;
+}
+
+.button {
+    background: var(--btncolor);
+    color: white;
+    padding: 15px 30px;
+}
+
+.card {
+    background: white;
+    padding: var(--card-padding);
+    border: 1px solid var(--blue);
+}
+
+.theme-dark .card {
+    background: #333;
+    color: white;
+    border-color: var(--blue);
+}

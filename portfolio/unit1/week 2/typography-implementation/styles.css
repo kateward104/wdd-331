@@ -1,0 +1,91 @@
+/* @font-face information */
+@font-face {
+    font-family: "Heading Font";
+    src: url("fonts/LeckerliOne-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Body Font";
+    font-weight: 400;
+    src: url("fonts/CrimsonText-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+
+:root {
+    /* Font family */
+    --heading-font: "Heading Font", Impact, sans-serif;
+    --body-font: "Body Font", Georgia, serif;
+
+    /* Base size and ratio*/
+    --font-size-base: 1rem;
+    /* 16px, this is fairly standard for a web base size */
+    --scale-ratio: 1.25;
+
+    /* Spacing scale */
+    --rhythm: 1.5rem;
+    /* This is body text line height */
+    --spacing-sm: calc(var(--rhythm) * 0.5);
+    --spacing-md: var(--rhythm);
+    --spacing-lg: calc(var(--rhythm) * 1.5);
+    --spacing-xl: calc(var(--rhythm) * 2);
+
+    /* Font typography using clamp */
+    --font-size-sm: calc(var(--font-size-base) / var(--scale-ratio));
+    --font-size-md: var(--font-size-base);
+    --font-size-lg: calc(var(--font-size-base) * var(--scale-ratio));
+    --font-size-xl: calc(var(--font-size-base) * var(--scale-ratio) * var(--scale-ratio));
+    --font-size-2xl: calc(var(--font-size-base) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio));
+
+
+    /* Line length */
+    --body-length: 66ch;
+    --heading-length: 33ch;
+
+}
+
+body {
+    margin: var(--rhythm);
+}
+
+article {
+    max-width: var(--body-length);
+}
+
+
+h1 {
+    font-size: clamp(var(--font-size-xl), 5vw, var(--font-size-2xl));
+    max-width: var(--heading-length);
+    font-family: var(--heading-font);
+    line-height: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+h2 {
+    font-size: clamp(var(--font-size-lg), 4vw, var(--font-size-xl));
+    font-family: var(--heading-font);
+    line-height: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-size: clamp(var(--font-size-md), 3vw, var(--font-size-lg));
+    font-family: var(--heading-font);
+    line-height: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+
+p,
+li {
+    max-width: var(--body-length);
+    font-family: var(--body-font);
+    font-size: clamp(var(--font-size-sm), 0.8rem + 1vw, var(--font-size-lg));
+    line-height: var(--rhythm);
+    margin-bottom: var(--spacing-md);
+}
