@@ -1,0 +1,56 @@
+<!-- Original navigation with generic classes -->
+<nav class="nav">
+    <div class="container">
+        <a href="/" class="logo">Brand</a>
+        <ul class="menu">
+            <li class="item active">
+                <a href="/">Home</a>
+            </li>
+            <li class="item">
+                <a href="/products">Products</a>
+            </li>
+            <li class="item">
+                <a href="/about">About</a>
+            </li>
+        </ul>
+        <button class="toggle">Menu</button>
+    </div>
+</nav>
+
+<!-- TODO: Refactor using BEM -->
+<nav class="nav">
+    <div class="nav__container">
+        <a class="nav__logo" href="/">Brand</a>
+        <ul class="nav__menu">
+            <li class="nav__item nav__item--active">
+                <a href="/">Home</a>
+            </li>
+            <li class="nav__item">
+                <a href="/products">Products</a>
+            </li>
+            <li class="nav__item">
+                <a href="/about">About</a>
+            </li>
+        </ul>
+        <button class="nav__toggle">Menu</button>
+    </div>
+</nav>
+
+<!-- TODO: Refactor using CUBE CSS -->
+<nav class="nav cluster">
+    <div class="container cluster">
+        <a href="/" class="logo text-bold">Brand</a>
+        <ul class="menu cluster">
+            <li class="item" aria-current="page">
+                <a href="/">Home</a>
+            </li>
+            <li class="item">
+                <a href="/products">Products</a>
+            </li>
+            <li class="item">
+                <a href="/about">About</a>
+            </li>
+        </ul>
+        <button class="toggle">Menu</button>
+    </div>
+</nav>

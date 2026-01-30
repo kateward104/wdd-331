@@ -1,0 +1,31 @@
+/**
+ * Analyze this CSS organization:
+ * 1. What is the layer precedence order (lowest to highest)?
+ *    The layer order is base, then components, then utilities. It should be from lowest to highest in the order
+ *    it is written. 
+ * 2. If both rules target the same button, which color wins?
+ *    Red will win because utilities is a higher layer than base.
+ * 3. Why does layer order matter more than specificity here?
+ *    Because if you think about it like a sandwich, even if you want your meat a very specific way, and you put
+ *    cheese on top, the cheese will be closer to the top. There is specificity in each of the layers, but the layer
+ *    order is what matters most.
+ * 4. When would you NOT use layers for a project?
+ *    If the project is small, if you are doing the project on your own, and if you don't have any specificity
+ *    issues, then you should not use layers.
+ */
+
+@layer base, components, utilities;
+
+@layer base {
+    button {
+        color: blue;
+    }
+}
+
+@layer utilities {
+    .btn {
+        color: red;
+    }
+}
+
+/* Which color applies to: Click */
