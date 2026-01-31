@@ -1,0 +1,61 @@
+:root {
+
+    /* Color Palette */
+    --primary-color-navy: oklch(0.2387 0.0359 260.68);
+    --secondary-color-cyan: oklch(0.6068 0.1034 207.56);
+    --primary-color-red: oklch(0.6011 0.2114 31.4);
+    --secondary-color-orange: oklch(0.7269 0.1748 40.39);
+    --neutral-gray: oklch(97.092% 0.00104 11.343);
+
+
+    /* Create Semantic variables */
+    --background-color: var(--neutral-gray);
+    --header-color: var(--primary-color-red);
+    --body-copy-color: var(--primary-color-navy);
+
+
+    /* Spacing */
+    --base-unit: 1.5rem;
+    --spacing-xs: calc (var(--base-unit) * 0.1);
+    --spacing-sm: calc(var(--base-unit) * 0.5);
+    --spacing-md: var(--base-unit);
+    --spacing-lg: calc(var(--base-unit) * 1.5);
+    --spacing-xl: calc(var(--base-unit) * 2);
+
+
+    /* Font typography using clamp */
+    --font-size-base: 1rem;
+    --font-size-sm: calc(var(--font-size-base) / var(--scale-ratio));
+    --font-size-md: var(--font-size-base);
+    --font-size-lg: calc(var(--font-size-base) * var(--scale-ratio));
+    --font-size-xl: calc(var(--font-size-base) * var(--scale-ratio) * var(--scale-ratio));
+    --font-size-2xl: calc(var(--font-size-base) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio));
+
+
+    /* Typography */
+    --main-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --header-font: Georgia, serif;
+
+}
+
+.dark-theme {
+    --background-color: var(--primary-color-navy);
+    --header-color: var(--neutral-gray);
+    --body-copy-color: var(--neutral-gray);
+}
+
+
+/* Support system preference */
+@media (prefers-color-scheme: dark) {
+    :root:not(.dark-theme):not(.light-theme) {
+        --color-background: oklch(0.15 0 0);
+        --color-text: oklch(0.95 0 0);
+    }
+}
+
+
+/*
+--button-background: var(--secondary-color-cyan);
+    --button-color: var(--);
+    --navigation-background: var(--primary-color-navy);
+*/

@@ -1,3 +1,5 @@
+@import 'base styles.css';
+
 /**
  * Product Showcase - Theming System
  * 
@@ -41,3 +43,68 @@
  */
 
 /* Your CSS implementation goes here */
+
+
+
+/* Composition - layout, and skeletal structure */
+header {
+    display: flex;
+}
+
+/* Utilities - single-purpose classes that apply to specific styles (colors typography spacing) */
+body {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--header-font);
+    }
+
+    p {
+        color: var(--body-copy-color);
+        font-family: var(--main-font);
+    }
+}
+
+
+header {
+    background-color: var(--primary-color-navy);
+
+    h1 {
+        color: var(--neutral-gray);
+    }
+}
+
+
+main {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: var(--secondary-color-orange);
+    }
+
+
+}
+
+
+button {
+    padding: var(--spacing-sm);
+    background-color: var(--primary-color-red);
+    color: var(--neutral-gray);
+    border-radius: var(--spacing-sm);
+}
+
+
+
+/* Block - blocks are reusable components with specific styling. Visual rather than structure. */
+
+
+
+/* Exception - handles edge cases and deviations from the norm. Highest specificity */

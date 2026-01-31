@@ -32,7 +32,7 @@
     --spacing-lg: calc(var(--rhythm) * 1.5);
     --spacing-xl: calc(var(--rhythm) * 2);
 
-    /* Font typography using clamp */
+    /* Font typography using calc */
     --font-size-sm: calc(var(--font-size-base) / var(--scale-ratio));
     --font-size-md: var(--font-size-base);
     --font-size-lg: calc(var(--font-size-base) * var(--scale-ratio));
