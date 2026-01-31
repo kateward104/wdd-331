@@ -42,69 +42,108 @@
  * 7. Style all components and states
  */
 
-/* Your CSS implementation goes here */
 
 
+/* Composition - layout, and skeletal structure (Grid, Flex, Flow, Cluster) */
 
-/* Composition - layout, and skeletal structure */
-header {
+:where(.header-content, .product-grid, .filter-buttons) {
     display: flex;
 }
 
-/* Utilities - single-purpose classes that apply to specific styles (colors typography spacing) */
-body {
+.header-content {
+    justify-content: space-between;
+}
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: var(--header-font);
-    }
-
-    p {
-        color: var(--body-copy-color);
-        font-family: var(--main-font);
-    }
+.product-grid {
+    flex-wrap: wrap;
+    gap: var(--spacing-xl);
 }
 
 
-header {
-    background-color: var(--primary-color-navy);
+.filter-buttons {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+
+/* Utilities - single-purpose classes that apply to specific styles (colors typography spacing) */
+
+:where(.site-header, .site-footer) {
+    padding: var(--spacing-md);
+}
+
+
+.site-header {
+    background-color: var(--color-nav-footer);
 
     h1 {
-        color: var(--neutral-gray);
+        color: var(--color-surface);
     }
+}
+
+section {
+    margin-block: var(--spacing-xl);
 }
 
 
 main {
+    margin: var(--spacing-md);
+}
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        color: var(--secondary-color-orange);
+
+.site-footer {
+    background-color: var(--color-nav-footer);
+    margin-top: var(--spacing-xl);
+
+    p {
+        color: var(--color-surface);
+    }
+}
+
+
+
+/* Block - blocks are reusable components with specific styling. Visual rather than structure. (Card, Button, Header, Filter button) */
+
+.button,
+button {
+    margin: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-radius: var(--spacing-sm);
+
+    &:hover {
+        background-color: var(--button-hover);
     }
 
-
+    &:active {
+        background-color: var(--button-active);
+    }
 }
 
-
-button {
+.product-card {
     padding: var(--spacing-sm);
-    background-color: var(--primary-color-red);
-    color: var(--neutral-gray);
-    border-radius: var(--spacing-sm);
+    border-radius: var(--spacing-md);
+    stroke: var(--base-unit) solid var(--color-primary);
+    box-shadow: 3px 3px 10px var(--color-border);
+
+    img {
+        width: 100%;
+        border-radius: var(--spacing-md);
+    }
+
+    .product-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .product-price {
+        color: var(--color-body-text);
+        font-weight: bold;
+    }
 }
 
 
 
-/* Block - blocks are reusable components with specific styling. Visual rather than structure. */
-
-
-
-/* Exception - handles edge cases and deviations from the norm. Highest specificity */
+/* Exception - handles edge cases and deviations from the norm. Highest specificity (.active, .dark-theme, :hover, :focus-visible) */

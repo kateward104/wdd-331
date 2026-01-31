@@ -1,61 +1,157 @@
+/* Base Reset Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+
+
+/* Root Styles */
 :root {
 
     /* Color Palette */
     --primary-color-navy: oklch(0.2387 0.0359 260.68);
     --secondary-color-cyan: oklch(0.6068 0.1034 207.56);
     --primary-color-red: oklch(0.6011 0.2114 31.4);
+    --primary-color-darker-navy: color-mix(in oklch, var(--primary-color-navy) 70%, black 30%);
+    --primary-color-lighter-navy: color-mix(in oklch, var(--primary-color-navy) 70%, white 30%);
     --secondary-color-orange: oklch(0.7269 0.1748 40.39);
     --neutral-gray: oklch(97.092% 0.00104 11.343);
 
 
     /* Create Semantic variables */
-    --background-color: var(--neutral-gray);
-    --header-color: var(--primary-color-red);
-    --body-copy-color: var(--primary-color-navy);
+    --color-background: var(--neutral-gray);
+    --color-surface: var(--neutral-gray);
+    --color-header: var(--secondary-color-orange);
+    --color-nav-footer: var(--secondary-color-cyan);
+    --color-body-text: var(--primary-color-navy);
+    --color-primary: var(--primary-color-red);
+    --color-border: var(--primary-color-darker-navy);
+
+    /* Transitions */
+    --theme-transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
 
 
     /* Spacing */
     --base-unit: 1.5rem;
-    --spacing-xs: calc (var(--base-unit) * 0.1);
+    --spacing-xs: calc(var(--base-unit) * 0.25);
     --spacing-sm: calc(var(--base-unit) * 0.5);
     --spacing-md: var(--base-unit);
     --spacing-lg: calc(var(--base-unit) * 1.5);
     --spacing-xl: calc(var(--base-unit) * 2);
 
 
-    /* Font typography using clamp */
-    --font-size-base: 1rem;
+    /* Font typography for body copy */
+    --scale-ratio: 1.25;
+    --font-size-base: 1em;
+    --font-size-xs: calc(var(--font-size-base) / var(--scale-ratio) / var(--scale-ratio));
     --font-size-sm: calc(var(--font-size-base) / var(--scale-ratio));
     --font-size-md: var(--font-size-base);
     --font-size-lg: calc(var(--font-size-base) * var(--scale-ratio));
     --font-size-xl: calc(var(--font-size-base) * var(--scale-ratio) * var(--scale-ratio));
     --font-size-2xl: calc(var(--font-size-base) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio));
+    --font-size-small-display: calc(var(--font-size-2xl) * var(--scale-ratio));
+    --font-size-large-display: calc(var(--font-size-2xl) * var(--scale-ratio) * var(--scale-ratio));
+
+
+    /* Font typography for headers */
+    /*
+    --heading-scale-ratio: 1.25;
+    --font-heading-size-base: 1em;
+    --font-heading-size-xs: calc(var(--font-size-base) / var(--heading-scale-ratio) / var(--heading-scale-ratio));
+    --font-heading-size-sm: calc(var(--font-size-base) / var(--heading-scale-ratio));
+    --font-heading-size-md: var(--font-heading-size-base);
+    --font-heading-size-lg: calc(var(--font-size-base) * var(--heading-scale-ratio));
+    --font-heading-size-xl: calc(var(--font-size-base) * var(--heading-scale-ratio) * var(--heading-scale-ratio));
+    --font-heading-size-2xl: calc(var(--font-size-base) * var(--heading-scale-ratio) * var(--heading-scale-ratio) * var(--heading-scale-ratio));
+    */
 
 
     /* Typography */
     --main-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --header-font: Georgia, serif;
 
+
+    /* Buttons */
+    --button-hover: color-mix(in oklch, var(--primary-color-red) 70%, black 30%);
+    --button-active: var(--primary-color-lighter-navy);
+
+
 }
 
 .dark-theme {
-    --background-color: var(--primary-color-navy);
-    --header-color: var(--neutral-gray);
-    --body-copy-color: var(--neutral-gray);
+    --color-background: var(--primary-color-navy);
+    --color-surface: var(--neutral-gray);
+    --color-header: var(--secondary-color-orange);
+    --color-nav-footer: var(--secondary-color-cyan);
+    --color-body-text: var(--neutral-gray);
+    --color-primary: var(--primary-color-red);
 }
 
 
 /* Support system preference */
 @media (prefers-color-scheme: dark) {
     :root:not(.dark-theme):not(.light-theme) {
-        --color-background: oklch(0.15 0 0);
-        --color-text: oklch(0.95 0 0);
+        --color-background: var(--primary-color-navy);
+        --color-surface: var(--neutral-gray);
+        --color-header: var(--secondary-color-orange);
+        --color-nav-footer: var(--secondary-color-cyan);
+        --color-body-text: var(--neutral-gray);
+        --color-primary: var(--primary-color-red);
     }
 }
 
 
-/*
---button-background: var(--secondary-color-cyan);
-    --button-color: var(--);
-    --navigation-background: var(--primary-color-navy);
-*/
+/* Your CSS implementation goes here */
+
+body {
+    background-color: var(--color-background);
+    transition: var(--theme-transition);
+    font-size: clamp(var(--font-size-xs) 1vw var(--font-size-md));
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--header-font);
+    color: var(--color-header);
+}
+
+h1 {
+    font-size: clamp(var(--font-size-small-display), 3vw, var(--font-size-large-display));
+}
+
+h2,
+h3 {
+    font-size: clamp(var(--font-size-lg), 3vw, var(--font-size-xl));
+}
+
+h4,
+h5,
+h6 {
+    font-size: clamp(var(--font-md), 3vw, var(--font-size-lg));
+}
+
+
+p {
+    color: var(--color-body-text);
+    font-family: var(--main-font);
+    font-size: clamp(var(--font-size-sm), 3vw, var(--font-size-md));
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        transition: none;
+    }
+}
