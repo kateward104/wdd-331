@@ -65,19 +65,6 @@ body {
     --font-size-large-display: calc(var(--font-size-2xl) * var(--scale-ratio) * var(--scale-ratio));
 
 
-    /* Font typography for headers */
-    /*
-    --heading-scale-ratio: 1.25;
-    --font-heading-size-base: 1em;
-    --font-heading-size-xs: calc(var(--font-size-base) / var(--heading-scale-ratio) / var(--heading-scale-ratio));
-    --font-heading-size-sm: calc(var(--font-size-base) / var(--heading-scale-ratio));
-    --font-heading-size-md: var(--font-heading-size-base);
-    --font-heading-size-lg: calc(var(--font-size-base) * var(--heading-scale-ratio));
-    --font-heading-size-xl: calc(var(--font-size-base) * var(--heading-scale-ratio) * var(--heading-scale-ratio));
-    --font-heading-size-2xl: calc(var(--font-size-base) * var(--heading-scale-ratio) * var(--heading-scale-ratio) * var(--heading-scale-ratio));
-    */
-
-
     /* Typography */
     --main-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --header-font: Georgia, serif;
